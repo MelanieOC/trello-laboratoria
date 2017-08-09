@@ -1,14 +1,21 @@
-var lista = document.getElementById('tarea');
+var contenido=document.getElementById('contenido');
+var lista = document.createElement('div');
+	lista.setAttribute('onclick', 'iniciar(this)');
+	lista.innerHTML= 'Añadir una lista...';
+
+contenido.appendChild(lista);
+
 var t = [];
-function iniciar () {
+function iniciar (e) {
+	contenido.appendChild(e);
 	var div = document.createElement('div');
 	var input = document.createElement('input');
 		input.setAttribute('type', 'texto');
 		input.setAttribute('id', 'texto');
-		input.setAttribute('placeholder', 'Añadir lista...')
+		input.setAttribute('placeholder', 'Añadir una lista...')
 	var p= document.createElement('p');
 	var button = document.createElement('button');
-		button.setAttribute('onclick', 'añadir()');
+		button.setAttribute('onclick', 'agregar()');
 		button.innerHTML='Guardar';
 	var borrar = document.createElement('button');
 		borrar.setAttribute('onclick', 'delete()');
@@ -18,13 +25,14 @@ function iniciar () {
 	div.appendChild(input);
 	div.appendChild(p);
 
-	lista.removeAttribute('onclick');
-	lista.replaceChild(div, lista.firstChild);
+	e.removeAttribute('onclick');
+	e.replaceChild(div, e.firstChild);
+
+	contenido.appendChild(e);
 }
 
-function añadir() {
+function agregar() {
 	var titulo = document.getElementById('texto').value;
-	console.log(titulo);
 	var div = document.createElement('div');
 	var h1=document.createElement('h3');
 		h1.innerHTML=titulo;
